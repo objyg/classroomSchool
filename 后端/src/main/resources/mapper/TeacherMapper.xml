@@ -17,11 +17,18 @@
     *
     from teacher
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectTeacherByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from teacher
+        where username = #{userName,jdbcType=VARCHAR}
+    </select>
+  <select id="teacherLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from teacher
-    where teacherid = #{teacherid,jdbcType=INTEGER}
+    where username = #{userName,jdbcType=VARCHAR}
+    and password = #{passWord,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from teacher

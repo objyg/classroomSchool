@@ -31,5 +31,10 @@ public class StudentServiceImp implements StudentService {
     return studentMapper.studentLogin(userName,passWord);
     }
 
+    @Override
+    public List<Student> selectStudentByUserName(String userName) {
+        return studentMapper.selectStudentByUserName(userName);
+    }
+
 
 }

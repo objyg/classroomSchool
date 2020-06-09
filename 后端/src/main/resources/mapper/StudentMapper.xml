@@ -17,6 +17,12 @@
     *
     from student
   </select>
+    <select id="selectStudentByUserName" parameterType="java.lang.String"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from student
+        where username = #{userName,jdbcType=VARCHAR}
+    </select>
   <select id="studentLogin" parameterType="java.lang.String"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
