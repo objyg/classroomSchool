@@ -23,4 +23,24 @@ public class TeacherServiceImp implements TeacherService {
     public List<Teacher> selectAllTeacher(){
         return teacherMapper.selectAllTeacher();
     }
+
+    @Override
+    public List<Teacher> teacherLogin(String userName, String passWord) {
+       return teacherMapper.teacherLogin(userName,passWord);
+    }
+
+    @Override
+    public List<Teacher> selectTeacherByUserName(String userName) {
+        return teacherMapper.selectTeacherByUserName(userName);
+    }
+
+    @Override
+    public void insertTeacher(Teacher teacher) {
+        teacherMapper.insertTeacher(teacher);
+    }
+
+    @Override
+    public List<Teacher> selectTeacherByCourse(int courseId) {
+       return teacherMapper.selectTeacherByCourse(courseId);
+    }
 }

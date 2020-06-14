@@ -36,4 +36,10 @@ public class StudentController {
             return null;
         }
     }
+
+//    根据课程查找学生
+    @PostMapping("/selectStudentByCourse")
+    public List<Student> selectStudentByCourse(@RequestBody int courseId){
+        return studentService.selectStudentByCourse(courseId);
+    }
 }

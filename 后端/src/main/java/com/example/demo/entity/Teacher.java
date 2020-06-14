@@ -60,4 +60,15 @@ public class Teacher {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+    public Teacher(Integer teacherid, String name, String email, String school, String username, String password) {
+        this.teacherid = teacherid;
+        this.name = name;
+        this.email = email;
+        this.school = school;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Teacher(){}
 }
