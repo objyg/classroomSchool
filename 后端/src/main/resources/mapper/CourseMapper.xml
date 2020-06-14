@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Course">
+    <id column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="coursename" jdbcType="VARCHAR" property="coursename" />
+    <result column="addcoursecode" jdbcType="VARCHAR" property="addcoursecode" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="total" jdbcType="INTEGER" property="total" />
+    <result column="Archive" jdbcType="INTEGER" property="archive" />
+    <result column="display" jdbcType="INTEGER" property="display" />
+    <result column="serialnumber" jdbcType="INTEGER" property="serialnumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    courseid, coursename, addcoursecode, introduction, total, Archive, show, serialnumber
+  </sql>
+  <select id="selectAllCourse" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from course
+  </select>
+  <select id="selectCourseByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+ SELECT course.* FROM course WHERE course.courseid in (SELECT coursestudent.courseid FROM coursestudent WHERE coursestudent.studentid=
+  #{studentId,jdbcType=INTEGER}
+ )
+  </select>
+  <select id="selectCourseByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+ SELECT course.* FROM course WHERE course.courseid in (SELECT courseteacher.course_id FROM courseteacher WHERE courseteacher.teacher_id=
+  #{teacherId,jdbcType=INTEGER}
+ )
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where courseid = #{courseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertCourse" parameterType="com.example.demo.entity.Course">
+    insert into course (courseid, coursename, addcoursecode, 
+      introduction, total, Archive, 
+      display, serialnumber)
+    values (#{courseid,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, #{addcoursecode,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{archive,jdbcType=INTEGER}, 
+      #{display,jdbcType=INTEGER}, #{serialnumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="coursename != null">
+        coursename,
+      </if>
+      <if test="addcoursecode != null">
+        addcoursecode,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="archive != null">
+        Archive,
+      </if>
+      <if test="show != null">
+        show,
+      </if>
+      <if test="serialnumber != null">
+        serialnumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="addcoursecode != null">
+        #{addcoursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="archive != null">
+        #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="show != null">
+        #{show,jdbcType=INTEGER},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Course">
+    update course
+    <set>
+      <if test="coursename != null">
+        coursename = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="addcoursecode != null">
+        addcoursecode = #{addcoursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="archive != null">
+        Archive = #{archive,jdbcType=INTEGER},
+      </if>
+      <if test="show != null">
+        show = #{show,jdbcType=INTEGER},
+      </if>
+      <if test="serialnumber != null">
+        serialnumber = #{serialnumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where courseid = #{courseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Course">
+    update course
+    set coursename = #{coursename,jdbcType=VARCHAR},
+      addcoursecode = #{addcoursecode,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER},
+      Archive = #{archive,jdbcType=INTEGER},
+      show = #{show,jdbcType=INTEGER},
+      serialnumber = #{serialnumber,jdbcType=INTEGER}
+    where courseid = #{courseid,jdbcType=INTEGER}
+  </update>
+</mapper>

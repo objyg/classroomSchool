@@ -9,6 +9,8 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     studentid, name, phone, school, username, password
   </sql>
@@ -17,23 +19,36 @@
     *
     from student
   </select>
+  <select id="selectStudentByCourse" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+    select
+    student.*
+    from student
+    where student.studentid in (select coursestudent.studentid from coursestudent where coursestudent.courseid = #{courseId,jdbcType=INTEGER})
+  </select>
+    <select id="selectStudentByUserName" parameterType="java.lang.String"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from student
+        where username = #{userName,jdbcType=VARCHAR}
+    </select>
   <select id="studentLogin" parameterType="java.lang.String"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
     where username = #{userName,jdbcType=VARCHAR}
+    or phone=#{userName,jdbcType=VARCHAR}
     and password = #{passWord,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student
     where studentid = #{studentid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Student">
+  <insert id="insertStudent" parameterType="com.example.demo.entity.Student">
     insert into student (studentid, name, phone, 
       school, username, password
       )
     values (#{studentid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR})
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Student">

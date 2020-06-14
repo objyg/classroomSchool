@@ -36,5 +36,15 @@ public class StudentServiceImp implements StudentService {
         return studentMapper.selectStudentByUserName(userName);
     }
 
+    @Override
+    public void insertStudent(Student student) {
+        studentMapper.insertStudent(student);
+    }
+
+    @Override
+    public List<Student> selectStudentByCourse(int courseId) {
+        return studentMapper.selectStudentByCourse(courseId);
+    }
+
 
 }

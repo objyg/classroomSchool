@@ -33,4 +33,14 @@ public class TeacherServiceImp implements TeacherService {
     public List<Teacher> selectTeacherByUserName(String userName) {
         return teacherMapper.selectTeacherByUserName(userName);
     }
+
+    @Override
+    public void insertTeacher(Teacher teacher) {
+        teacherMapper.insertTeacher(teacher);
+    }
+
+    @Override
+    public List<Teacher> selectTeacherByCourse(int courseId) {
+       return teacherMapper.selectTeacherByCourse(courseId);
+    }
 }

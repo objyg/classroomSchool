@@ -17,6 +17,12 @@
     *
     from teacher
   </select>
+  <select id="selectTeacherByCourse" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   select
+    teacher.*
+    from teacher
+    where teacher.teacherid in (select courseteacher.teacher_id from courseteacher where courseteacher.course_id = #{courseId,jdbcType=INTEGER})
+  </select>
     <select id="selectTeacherByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -28,18 +34,19 @@
     <include refid="Base_Column_List" />
     from teacher
     where username = #{userName,jdbcType=VARCHAR}
+    or email=#{userName,jdbcType=VARCHAR}
     and password = #{passWord,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from teacher
     where teacherid = #{teacherid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Teacher">
+  <insert id="insertTeacher" parameterType="com.example.demo.entity.Teacher">
     insert into teacher (teacherid, name, email, 
       school, username, password
       )
     values (#{teacherid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      #{school,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR})
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Teacher">

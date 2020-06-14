@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CourseStudentMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.CourseStudent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="studentid" jdbcType="INTEGER" property="studentid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, courseid, studentid
+  </sql>
+  <select id="selectAllCourseStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from coursestudent
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coursestudent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteCourseSrudent" parameterType="java.lang.Integer">
+    delete from coursestudent
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.CourseStudent">
+    insert into coursestudent (id, courseid, studentid
+      )
+    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertCourseStudent" parameterType="com.example.demo.entity.CourseStudent">
+    insert into coursestudent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="studentid != null">
+        studentid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.CourseStudent">
+    update coursestudent
+    <set>
+      <if test="courseid != null">
+        courseid = #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null">
+        studentid = #{studentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CourseStudent">
+    update coursestudent
+    set courseid = #{courseid,jdbcType=INTEGER},
+      studentid = #{studentid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -16,4 +16,10 @@ public interface StudentMapper {
 
 //    根据用户名查找学生信息
     List<Student> selectStudentByUserName(String userName);
+
+//    添加学生信息
+    void insertStudent(Student student);
+
+//    根据课程查找学生
+    List<Student> selectStudentByCourse(int courseId);
 }

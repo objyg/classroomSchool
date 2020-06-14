@@ -15,4 +15,10 @@ public interface TeacherService {
 
      //    根据用户名查找教师信息
      List<Teacher> selectTeacherByUserName(String userName);
+
+     //    添加教师信息
+     void insertTeacher(Teacher teacher);
+
+     //    根据课程查找教师
+     List<Teacher> selectTeacherByCourse(int courseId);
 }
