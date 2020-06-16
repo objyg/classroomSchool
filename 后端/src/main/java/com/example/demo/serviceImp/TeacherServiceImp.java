@@ -43,4 +43,9 @@ public class TeacherServiceImp implements TeacherService {
     public List<Teacher> selectTeacherByCourse(int courseId) {
        return teacherMapper.selectTeacherByCourse(courseId);
     }
+
+    @Override
+    public Teacher selectTeacherByTeacherId(int teacherId) {
+        return teacherMapper.selectTeacherByTeacherId(teacherId);
+    }
 }

@@ -19,6 +19,12 @@
     *
     from student
   </select>
+  <select id="selectStudentByStudentId" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+    select
+    student.*
+    from student
+    where student.studentid = #{studentId,jdbcType=INTEGER}
+  </select>
   <select id="selectStudentByCourse" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
     select
     student.*

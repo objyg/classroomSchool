@@ -17,6 +17,12 @@
     *
     from teacher
   </select>
+  <select id="selectTeacherByTeacherId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   select
+    teacher.*
+    from teacher
+    where teacher.teacherid  = #{teacherId,jdbcType=INTEGER}
+  </select>
   <select id="selectTeacherByCourse" parameterType="java.lang.Integer" resultMap="BaseResultMap">
    select
     teacher.*

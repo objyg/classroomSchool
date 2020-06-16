@@ -23,4 +23,7 @@ public interface TeacherMapper {
 
 //    根据课程查找教师
     List<Teacher> selectTeacherByCourse(int courseId);
+
+    //     根据id查找教师
+    Teacher selectTeacherByTeacherId(int teacherId);
 }

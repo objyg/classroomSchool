@@ -21,4 +21,7 @@ public interface StudentService {
 
      //    根据课程查找学生
      List<Student> selectStudentByCourse(int courseId);
+
+     //    根据学号查找学生
+     Student selectStudentByStudentId(int studentId);
 }

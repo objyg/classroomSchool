@@ -32,75 +32,6 @@ public class EnRollController {
     TeacherService teacherService;
 
 
-//
-//    int numberA ;
-//    int numberB ;
-//    int rule ;
-//
-////    返回验证码
-//@GetMapping("/enTerEnRoll")
-//    public int[] enTerEnRoll(){
-//    //        生成随机数
-//    Random r = new Random();
-//     numberA = r.nextInt(10);
-//     numberB = r.nextInt(10);
-//     rule = r.nextInt(4);
-//
-//    int [] enroll=new int[3];
-//    enroll[0]=numberA;
-//    enroll[1]=numberB;
-//    enroll[2]=rule;
-//    return enroll;
-//    }
-//
-////    注册
-//    @PostMapping("/enRoll")
-//    public String enRoll(){
-//    double result=0;
-//    double answer;
-//
-//    String types="student";
-//
-////    计算答案
-//    switch (rule){
-//        case 0:answer=numberA+numberB;
-//        break;
-//        case 1:answer=numberA-numberB;
-//        break;
-//        case 2:answer=numberA*numberB;
-//        break;
-//        default:
-//            answer=(numberA*1.0)/numberB;
-//    }
-////    将用户输入的结果与答案比较
-//        if(result==answer){
-//            if(types.equals("student")) {
-//                int studentId = 111;
-//                String name="小明";
-//                String phone="1234567890";
-//                String school="重庆理工大学";
-//                String userName="qwer";
-//                String passWord="123456";
-//                Student student = new Student(studentId, name, phone, school, userName, passWord);
-//                studentService.insertStudent(student);
-//                return "注册成功！";
-//            }
-//            else {
-//                int teacherId=222;
-//                String name="王传芳";
-//                String email="12313242";
-//                String school="重庆理工大学";
-//                String userName="qwer";
-//                String passWord="123456";
-//                Teacher teacher=new Teacher(teacherId,name,email,school,userName,passWord);
-//                teacherService.insertTeacher(teacher);
-//                return "注册成功！";
-//            }
-//        }
-//        else {
-//            return "验证码错误！";
-//        }
-//    }
 
     String verifyCode;
 
@@ -145,11 +76,19 @@ public class EnRollController {
                 String school=condition[3];
                 String userName=condition[7];
                 String passWord=condition[4];
-                Student student = new Student(studentId, name, phone, school, userName, passWord);
-                studentService.insertStudent(student);
-                result.setCode(200);
-                result.setMessage("学生注册成功！");
-                return result;
+//                判断学号是否存在
+                if(studentService.selectStudentByStudentId(studentId)!=null){
+                    result.setCode(202);
+                    result.setMessage("学号已经存在！");
+                    return result;
+                }
+                else {
+                    Student student = new Student(studentId, name, phone, school, userName, passWord);
+                    studentService.insertStudent(student);
+                    result.setCode(200);
+                    result.setMessage("学生注册成功！");
+                    return result;
+                }
             }
             else {
                 int teacherId=Integer.parseInt(condition[0]);
@@ -158,11 +97,18 @@ public class EnRollController {
                 String school=condition[3];
                 String userName="";
                 String passWord=condition[4];
-                Teacher teacher=new Teacher(teacherId,name,email,school,userName,passWord);
-                teacherService.insertTeacher(teacher);
-                result.setCode(200);
-                result.setMessage("教师/助教注册成功！");
-                return result;
+                if(teacherService.selectTeacherByTeacherId(teacherId)!=null){
+                    result.setCode(202);
+                    result.setMessage("职工号已经存在！");
+                    return result;
+                }
+                else {
+                    Teacher teacher = new Teacher(teacherId, name, email, school, userName, passWord);
+                    teacherService.insertTeacher(teacher);
+                    result.setCode(200);
+                    result.setMessage("教师/助教注册成功！");
+                    return result;
+                }
             }
         }
         else {
@@ -171,6 +117,8 @@ public class EnRollController {
             return result;
         }
     }
+
+
 
 
 }
