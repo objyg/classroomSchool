@@ -3,6 +3,8 @@ package com.example.demo.loginResult;
 import com.example.demo.entity.Student;
 import com.example.demo.entity.Teacher;
 
+
+//返回信息类
 public class Result {
     private Student student;
     private Teacher teacher;
