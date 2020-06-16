@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.WorkMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Work">
+    <id column="workid" jdbcType="INTEGER" property="workid" />
+    <result column="courseid" jdbcType="INTEGER" property="courseid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="releasedate" jdbcType="TIMESTAMP" property="releasedate" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="revised" jdbcType="INTEGER" property="revised" />
+    <result column="unreviewed" jdbcType="INTEGER" property="unreviewed" />
+    <result column="submittednum" jdbcType="INTEGER" property="submittednum" />
+    <result column="unpaidnum" jdbcType="INTEGER" property="unpaidnum" />
+    <result column="marks" jdbcType="INTEGER" property="marks" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.entity.Work">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    workid, courseid, type, releasedate, deadline, title, revised, unreviewed, submittednum, 
+    unpaidnum, marks
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectAllWork" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    *
+    from work
+  </select>
+  <select id="selectWorkByWorkId" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    *
+    from work
+    where workid = #{workid,jdbcType=INTEGER}
+  </select>
+  <select id="selectWorkByCourse" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    *
+    from work
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from work
+    where workid = #{workid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertWork" parameterType="com.example.demo.entity.Work">
+    insert into work (workid, courseid, type, 
+      releasedate, deadline, title, 
+      revised, unreviewed, submittednum, 
+      unpaidnum, marks, content
+      )
+    values (#{workid,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{releasedate,jdbcType=TIMESTAMP}, #{deadline,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
+      #{revised,jdbcType=INTEGER}, #{unreviewed,jdbcType=INTEGER}, #{submittednum,jdbcType=INTEGER}, 
+      #{unpaidnum,jdbcType=INTEGER}, #{marks,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Work">
+    insert into work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workid != null">
+        workid,
+      </if>
+      <if test="courseid != null">
+        courseid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="releasedate != null">
+        releasedate,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="revised != null">
+        revised,
+      </if>
+      <if test="unreviewed != null">
+        unreviewed,
+      </if>
+      <if test="submittednum != null">
+        submittednum,
+      </if>
+      <if test="unpaidnum != null">
+        unpaidnum,
+      </if>
+      <if test="marks != null">
+        marks,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workid != null">
+        #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null">
+        #{releasedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="revised != null">
+        #{revised,jdbcType=INTEGER},
+      </if>
+      <if test="unreviewed != null">
+        #{unreviewed,jdbcType=INTEGER},
+      </if>
+      <if test="submittednum != null">
+        #{submittednum,jdbcType=INTEGER},
+      </if>
+      <if test="unpaidnum != null">
+        #{unpaidnum,jdbcType=INTEGER},
+      </if>
+      <if test="marks != null">
+        #{marks,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Work">
+    update work
+    <set>
+      <if test="courseid != null">
+        courseid = #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="releasedate != null">
+        releasedate = #{releasedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="revised != null">
+        revised = #{revised,jdbcType=INTEGER},
+      </if>
+      <if test="unreviewed != null">
+        unreviewed = #{unreviewed,jdbcType=INTEGER},
+      </if>
+      <if test="submittednum != null">
+        submittednum = #{submittednum,jdbcType=INTEGER},
+      </if>
+      <if test="unpaidnum != null">
+        unpaidnum = #{unpaidnum,jdbcType=INTEGER},
+      </if>
+      <if test="marks != null">
+        marks = #{marks,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where workid = #{workid,jdbcType=INTEGER}
+  </update>
+  <update id="studentSubmitWork" parameterType="java.lang.Integer">
+    UPDATE `work` set `work`.submittednum=submittednum+1,unpaidnum=unpaidnum-1 WHERE workid=
+    #{workid,jdbcType=INTEGER}
+  </update>
+
+  <update id="teacherCheckWork" parameterType="java.lang.Integer">
+UPDATE `work` set revised=revised+1,unreviewed=unreviewed-1 WHERE workid=
+   #{workid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Work">
+    update work
+    set courseid = #{courseid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      releasedate = #{releasedate,jdbcType=TIMESTAMP},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      revised = #{revised,jdbcType=INTEGER},
+      unreviewed = #{unreviewed,jdbcType=INTEGER},
+      submittednum = #{submittednum,jdbcType=INTEGER},
+      unpaidnum = #{unpaidnum,jdbcType=INTEGER},
+      marks = #{marks,jdbcType=INTEGER}
+    where workid = #{workid,jdbcType=INTEGER}
+  </update>
+</mapper>
