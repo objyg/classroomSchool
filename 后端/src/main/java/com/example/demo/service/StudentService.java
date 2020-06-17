@@ -14,7 +14,7 @@ public interface StudentService {
      List<Student> studentLogin(String userName,String passWord);
 
      //    根据用户名查找学生信息
-     List<Student> selectStudentByUserName(String userName);
+     Student selectStudentByUserName(String userName);
 
      //    添加学生信息
      void insertStudent(Student student);

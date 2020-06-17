@@ -32,7 +32,7 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public List<Student> selectStudentByUserName(String userName) {
+    public Student selectStudentByUserName(String userName) {
         return studentMapper.selectStudentByUserName(userName);
     }
 

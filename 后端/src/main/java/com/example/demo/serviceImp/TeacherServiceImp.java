@@ -30,7 +30,7 @@ public class TeacherServiceImp implements TeacherService {
     }
 
     @Override
-    public List<Teacher> selectTeacherByUserName(String userName) {
+    public Teacher selectTeacherByUserName(String userName) {
         return teacherMapper.selectTeacherByUserName(userName);
     }
 

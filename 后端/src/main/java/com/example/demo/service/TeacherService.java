@@ -14,7 +14,7 @@ public interface TeacherService {
      List<Teacher> teacherLogin(String userName,String passWord);
 
      //    根据用户名查找教师信息
-     List<Teacher> selectTeacherByUserName(String userName);
+     Teacher selectTeacherByUserName(String userName);
 
      //    添加教师信息
      void insertTeacher(Teacher teacher);
