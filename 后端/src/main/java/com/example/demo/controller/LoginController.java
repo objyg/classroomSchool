@@ -35,18 +35,17 @@ public class LoginController {
     public Result Login(@RequestBody String[] condition){
         String userName=condition[0];
         String passWord=condition[1];
-        String types=condition[2];
         Result result=new Result();
         String md5PassWord = DigestUtils.md5DigestAsHex(passWord.getBytes());
         Subject user = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, md5PassWord,types);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, md5PassWord);
         try {
             //shiro帮我们匹配密码什么的，我们只需要把东西传给它，它会根据我们在UserRealm里认证方法设置的来验证
             user.login(token);
 
-//            判断是学生还是教师
-            if(types.equals("student")){
-                List<Student> studentList=studentService.studentLogin(userName,md5PassWord);
+//            判断登陆者是学生还是老师
+            List<Student> studentList=studentService.studentLogin(userName,md5PassWord);
+            if(studentList.size()>0){
                 result.setStudent(studentList.get(0));
             }
             else {

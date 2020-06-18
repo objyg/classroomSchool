@@ -42,35 +42,28 @@ public class UserRealm extends AuthorizingRealm {
 //        判断
         UsernamePasswordToken token=(UsernamePasswordToken)authenticationToken;
 
-//        判断是学生还是老师
-        String types=token.getHost();
-        if(types.equals("student")){
-            //        判断账号
+
+            //        判断账号是否存在
+//        先判断是不是学生
             Student student=studentService.selectStudentByUserName(token.getUsername());
 
             if(student==null){
-//            没有此账号
-                return null;
+//                再判断是不是老师
+                Teacher teacher=teacherService.selectTeacherByUserName(token.getUsername());
+                if(teacher==null) {
+                    return null;
+                }
+                else {
+                    return new SimpleAuthenticationInfo(teacher,teacher.getPassword(),"");
+                }
             }
 
             return new SimpleAuthenticationInfo(student,student.getPassword(),"");
         }
 
 
-        else {
-            //        判断账号
-            Teacher teacher=teacherService.selectTeacherByUserName(token.getUsername());
-            if(teacher==null){
-//            没有此账号
-                throw new UnknownAccountException();
-            }
 
-
-
-
-            return new SimpleAuthenticationInfo(teacher,teacher.getPassword(),"");
-        }
 
 
     }
-}
+

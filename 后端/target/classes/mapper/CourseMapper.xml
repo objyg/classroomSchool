@@ -9,6 +9,7 @@
     <result column="total" jdbcType="INTEGER" property="total" />
     <result column="Archive" jdbcType="INTEGER" property="archive" />
     <result column="display" jdbcType="INTEGER" property="display" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="serialnumber" jdbcType="INTEGER" property="serialnumber" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -123,15 +124,9 @@
     </set>
     where courseid = #{courseid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Course">
+  <update id="updateCourseFile" >
     update course
-    set coursename = #{coursename,jdbcType=VARCHAR},
-      addcoursecode = #{addcoursecode,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR},
-      total = #{total,jdbcType=INTEGER},
-      Archive = #{archive,jdbcType=INTEGER},
-      show = #{show,jdbcType=INTEGER},
-      serialnumber = #{serialnumber,jdbcType=INTEGER}
-    where courseid = #{courseid,jdbcType=INTEGER}
+    set file = #{fileName,jdbcType=VARCHAR}
+    where courseid = #{courseId,jdbcType=INTEGER}
   </update>
 </mapper>

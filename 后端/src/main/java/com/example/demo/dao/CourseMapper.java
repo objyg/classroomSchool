@@ -19,4 +19,7 @@ public interface CourseMapper {
 
 //        显示指定教师所有加入的课程
     List<Course> selectCourseByTeacher(int teacherId);
+
+    //     添加资料
+    void updateCourseFile(int courseId,String fileName);
 }

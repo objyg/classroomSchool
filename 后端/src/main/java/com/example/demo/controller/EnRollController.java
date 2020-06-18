@@ -82,6 +82,12 @@ public class EnRollController {
                     result.setMessage("学号已经存在！");
                     return result;
                 }
+//                判断用户名是否存在
+                else if(studentService.selectStudentByUserName(userName)!=null){
+                    result.setCode(203);
+                    result.setMessage("用户名已经存在！");
+                    return result;
+                }
                 else {
                     Student student = new Student(studentId, name, phone, school, userName, passWord);
                     studentService.insertStudent(student);

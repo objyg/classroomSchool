@@ -41,4 +41,9 @@ public class CourseServiceImp implements CourseService {
     public List<Course> selectCourseByTeacher(int teacherId) {
         return courseMapper.selectCourseByTeacher(teacherId);
     }
+
+    @Override
+    public void updateCourseFile(int courseId, String fileName) {
+        courseMapper.updateCourseFile(courseId,fileName);
+    }
 }

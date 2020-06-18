@@ -17,6 +17,16 @@ public class Course {
 
     private Integer serialnumber;
 
+    private String file;
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
     public Integer getCourseid() {
         return courseid;
     }

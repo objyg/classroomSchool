@@ -98,6 +98,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/TeacherController/*","authc");
         filterChainDefinitionMap.put("/WorkController/*","authc");
         filterChainDefinitionMap.put("/WorkStudentController/*","authc");
+        filterChainDefinitionMap.put("/FileController/*","authc");
+
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
