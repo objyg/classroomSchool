@@ -9,7 +9,6 @@
     <result column="total" jdbcType="INTEGER" property="total" />
     <result column="Archive" jdbcType="INTEGER" property="archive" />
     <result column="display" jdbcType="INTEGER" property="display" />
-    <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="serialnumber" jdbcType="INTEGER" property="serialnumber" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -125,8 +124,6 @@
     where courseid = #{courseid,jdbcType=INTEGER}
   </update>
   <update id="updateCourseFile" >
-    update course
-    set file = #{fileName,jdbcType=VARCHAR}
-    where courseid = #{courseId,jdbcType=INTEGER}
+
   </update>
 </mapper>

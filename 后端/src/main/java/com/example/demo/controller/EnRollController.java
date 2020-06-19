@@ -83,7 +83,7 @@ public class EnRollController {
                     return result;
                 }
 //                判断用户名是否存在
-                else if(studentService.selectStudentByUserName(userName)!=null){
+                else if((studentService.selectStudentByUserName(userName)!=null)||(teacherService.selectTeacherByUserName(userName)!=null)){
                     result.setCode(203);
                     result.setMessage("用户名已经存在！");
                     return result;
@@ -106,6 +106,12 @@ public class EnRollController {
                 if(teacherService.selectTeacherByTeacherId(teacherId)!=null){
                     result.setCode(202);
                     result.setMessage("职工号已经存在！");
+                    return result;
+                }
+                //                判断用户名是否存在
+                else if((studentService.selectStudentByUserName(userName)!=null)||(teacherService.selectTeacherByUserName(userName)!=null)){
+                    result.setCode(203);
+                    result.setMessage("用户名已经存在！");
                     return result;
                 }
                 else {
