@@ -14,11 +14,11 @@
     *
     from coursestudent
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectCourseStudentByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from coursestudent
-    where id = #{id,jdbcType=INTEGER}
+    where courseid = #{courseId,jdbcType=INTEGER}
   </select>
   <delete id="deleteCourseSrudent" parameterType="java.lang.Integer">
     delete from coursestudent

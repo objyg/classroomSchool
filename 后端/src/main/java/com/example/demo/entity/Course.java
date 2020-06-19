@@ -17,15 +17,27 @@ public class Course {
 
     private Integer serialnumber;
 
-    private String file;
 
-    public String getFile() {
-        return file;
+    private String title;
+
+    private String name;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setTitle(String title) {
+        this.title = title;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public Integer getCourseid() {
         return courseid;

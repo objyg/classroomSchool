@@ -184,6 +184,14 @@
 UPDATE `work` set revised=revised+1,unreviewed=unreviewed-1 WHERE workid=
    #{workid,jdbcType=INTEGER}
   </update>
+
+  <update id="updateUnSubmit" parameterType="java.lang.Integer">
+    update work
+    set unreviewed = #{number,jdbcType=INTEGER},
+      unpaidnum = #{number,jdbcType=INTEGER}
+    where workid = #{workId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Work">
     update work
     set courseid = #{courseid,jdbcType=INTEGER},
