@@ -38,8 +38,8 @@ public class CourseTeacherController {
 
 //    删除教师加入的课程信息
     @PostMapping("/deleteCourseTeacher")
-    public void deleteCourseTeacher(){
-        courseTeacherService.deleteCourseTeacher(2345,231);
+    public void deleteCourseTeacher(@RequestBody int[] condition){
+        courseTeacherService.deleteCourseTeacher(condition[0],condition[1]);
     }
 
     //    教师归档自己的课程

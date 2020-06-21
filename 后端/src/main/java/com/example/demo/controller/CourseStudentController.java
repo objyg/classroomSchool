@@ -44,8 +44,8 @@ public class CourseStudentController {
 
 //    删除学生的选课
     @PostMapping("/deleteCourseStudent")
-    public void deleteCourseStudent(){
-        courseStudentService.deleteCourseSrudent(2345,4521);
+    public void deleteCourseStudent(@RequestBody int[] condition){
+        courseStudentService.deleteCourseSrudent(condition[0],condition[1]);
     }
 
 //    学生归档自己的课程
