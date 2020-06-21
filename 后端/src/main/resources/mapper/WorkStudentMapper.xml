@@ -8,6 +8,7 @@
     <result column="submittime" jdbcType="TIMESTAMP" property="submittime" />
     <result column="text" jdbcType="VARCHAR" property="text" />
     <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="score" jdbcType="INTEGER" property="score" />
   </resultMap>
   <select id="selectALLWorkStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -16,19 +17,35 @@
   </select>
 
   <update id="teacherCheckWork" parameterType="java.lang.Integer">
-UPDATE workstudent set `status`='已批改' WHERE workid=
+UPDATE workstudent set `status`='已批改',
+  score=#{score,jdbcType=INTEGER}
+  WHERE workid=
  #{workId,jdbcType=INTEGER}
  and studentid=
 #{studentId,jdbcType=INTEGER}
   </update>
-  <insert id="insert" parameterType="com.example.demo.entity.WorkStudent">
-    insert into workstudent (workid, studentid, status, 
-      submittime, text, message
+
+  <update id="insertWorkStudent" parameterType="com.example.demo.entity.WorkStudent">
+UPDATE workstudent
+set
+ `status`='已提交',
+submittime=#{submittime,jdbcType=TIMESTAMP},
+text =  #{text,jdbcType=VARCHAR},
+message =  #{message,jdbcType=VARCHAR}
+  WHERE workid=
+ #{workid,jdbcType=INTEGER}
+ and studentid=
+#{studentid,jdbcType=INTEGER}
+  </update>
+
+  <insert id="issueWork" parameterType="java.lang.Integer">
+    insert into workstudent (workid, studentid, status
       )
-    values (#{workid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
-      #{submittime,jdbcType=TIMESTAMP}, #{text,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}
+    values (#{workId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
+    '未提交'
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.example.demo.entity.WorkStudent">
     insert into workstudent
     <trim prefix="(" suffix=")" suffixOverrides=",">

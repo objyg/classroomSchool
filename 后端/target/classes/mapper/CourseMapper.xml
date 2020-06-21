@@ -10,15 +10,25 @@
     <result column="Archive" jdbcType="INTEGER" property="archive" />
     <result column="display" jdbcType="INTEGER" property="display" />
     <result column="serialnumber" jdbcType="INTEGER" property="serialnumber" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="semester" jdbcType="VARCHAR" property="semester" />
   </resultMap>
+
   <sql id="Base_Column_List">
     courseid, coursename, addcoursecode, introduction, total, Archive, show, serialnumber
   </sql>
-  <select id="selectAllCourse" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    *
-    from course
+
+  <select id="selectAllCourse"  resultMap="BaseResultMap">
+			SELECT DISTINCT  teacher.`name`,`work`.title,course.*
+			FROM
+		teacher,`work`,course,courseteacher
+		WHERE course.courseid in
+		 (SELECT courseteacher.course_id FROM courseteacher,course WHERE teacher.teacherid=courseteacher.teacher_id)
+		AND
+		course.courseid=`work`.courseid;
   </select>
+
   <select id="selectCourseByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
  SELECT course.* FROM course WHERE course.courseid in (SELECT coursestudent.courseid FROM coursestudent WHERE coursestudent.studentid=
   #{studentId,jdbcType=INTEGER}
@@ -123,6 +133,19 @@
     </set>
     where courseid = #{courseid,jdbcType=INTEGER}
   </update>
+
+    <update id="updateAllArchive" parameterType="java.lang.Integer" >
+    update course
+    set Archive = 1
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </update>
+
+    <update id="insertCourseNumber" parameterType="java.lang.Integer" >
+    update course
+    set total = total+1
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateCourseFile" >
 
   </update>

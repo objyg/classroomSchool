@@ -33,7 +33,12 @@ public class WorkStudentServiceImp implements WorkStudentService {
     }
 
     @Override
-    public void teacherCheckWork(int workId, int studentId) {
-        workStudentMapper.teacherCheckWork(workId,studentId);
+    public void teacherCheckWork(int workId, int studentId,int score) {
+        workStudentMapper.teacherCheckWork(workId,studentId,score);
+    }
+
+    @Override
+    public void issueWork(int workId, int studentId) {
+        workStudentMapper.issueWork(workId,studentId);
     }
 }

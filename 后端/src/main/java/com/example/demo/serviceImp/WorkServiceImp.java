@@ -48,4 +48,9 @@ public class WorkServiceImp implements WorkService {
     public void teacherCheckWork(int workId) {
         workMapper.teacherCheckWork(workId);
     }
+
+    @Override
+    public void updateUnSubmit(int workId,int number) {
+        workMapper.updateUnSubmit(workId,number);
+    }
 }

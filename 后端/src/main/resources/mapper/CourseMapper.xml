@@ -12,6 +12,7 @@
     <result column="serialnumber" jdbcType="INTEGER" property="serialnumber" />
       <result column="name" jdbcType="VARCHAR" property="name" />
       <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="semester" jdbcType="VARCHAR" property="semester" />
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -132,6 +133,19 @@
     </set>
     where courseid = #{courseid,jdbcType=INTEGER}
   </update>
+
+    <update id="updateAllArchive" parameterType="java.lang.Integer" >
+    update course
+    set Archive = 1
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </update>
+
+    <update id="insertCourseNumber" parameterType="java.lang.Integer" >
+    update course
+    set total = total+1
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateCourseFile" >
 
   </update>

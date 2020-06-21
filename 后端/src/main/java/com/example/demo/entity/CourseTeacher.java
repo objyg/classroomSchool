@@ -9,6 +9,16 @@ public class CourseTeacher {
 
     private String role;
 
+    private Integer archive;
+
+    public Integer getArchive() {
+        return archive;
+    }
+
+    public void setArchive(Integer archive) {
+        this.archive = archive;
+    }
+
     public Integer getId() {
         return id;
     }

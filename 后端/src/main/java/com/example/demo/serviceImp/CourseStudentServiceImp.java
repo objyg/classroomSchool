@@ -32,4 +32,19 @@ public class CourseStudentServiceImp implements CourseStudentService {
     public void deleteCourseSrudent(int id) {
         courseStudentMapper.deleteCourseSrudent(id);
     }
+
+    @Override
+    public List<CourseStudent> selectCourseStudentByCourseId(int courseId) {
+        return courseStudentMapper.selectCourseStudentByCourseId(courseId);
+    }
+
+    @Override
+    public void updateOneArchive(int courseId, int studentId) {
+        courseStudentMapper.updateOneArchive(courseId,studentId);
+    }
+
+    @Override
+    public void updateAllArchive(int courseId) {
+        courseStudentMapper.updateAllArchive(courseId);
+    }
 }

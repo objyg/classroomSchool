@@ -25,4 +25,7 @@ public interface WorkService {
 
      //    教师批改作业    已批改+1     未批改-1
      void teacherCheckWork(int workId);
+
+     //    教师发布作业时，将未交人数修改为学习这门课程的学生人数
+     void updateUnSubmit(int workId,int number);
 }

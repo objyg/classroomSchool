@@ -15,4 +15,10 @@ public interface CourseTeacherService {
 
      //    删除教师加入的课程
      void deleteCourseTeacher(int id);
+
+     //    教师归档自己的课程
+     void updateOneArchive(int courseId,int teacherId);
+
+     //    归档全部
+     void updateAllArchive(int courseId);
 }

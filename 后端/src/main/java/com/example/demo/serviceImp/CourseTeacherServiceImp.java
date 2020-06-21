@@ -33,4 +33,14 @@ public class CourseTeacherServiceImp implements CourseTeacherService {
     public void deleteCourseTeacher(int id) {
         courseTeacherMapper.deleteCourseTeacher(id);
     }
+
+    @Override
+    public void updateOneArchive(int courseId, int teacherId) {
+        courseTeacherMapper.updateOneArchive(courseId,teacherId);
+    }
+
+    @Override
+    public void updateAllArchive(int courseId) {
+        courseTeacherMapper.updateAllArchive(courseId);
+    }
 }

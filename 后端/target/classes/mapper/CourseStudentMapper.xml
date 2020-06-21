@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="courseid" jdbcType="INTEGER" property="courseid" />
     <result column="studentid" jdbcType="INTEGER" property="studentid" />
+    <result column="archive" jdbcType="INTEGER" property="archive" />
   </resultMap>
   <sql id="Base_Column_List">
     id, courseid, studentid
@@ -24,37 +25,13 @@
     delete from coursestudent
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.CourseStudent">
-    insert into coursestudent (id, courseid, studentid
-      )
-    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}
-      )
-  </insert>
   <insert id="insertCourseStudent" parameterType="com.example.demo.entity.CourseStudent">
-    insert into coursestudent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="courseid != null">
-        courseid,
-      </if>
-      <if test="studentid != null">
-        studentid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="courseid != null">
-        #{courseid,jdbcType=INTEGER},
-      </if>
-      <if test="studentid != null">
-        #{studentid,jdbcType=INTEGER},
-      </if>
-    </trim>
+    insert into coursestudent (id, courseid, studentid,archive
+      )
+    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER},0
+      )
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.CourseStudent">
     update coursestudent
     <set>
@@ -67,6 +44,20 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateOneArchive" parameterType="java.lang.Integer" >
+    update coursestudent
+    set archive = 1
+    where courseid = #{courseId,jdbcType=INTEGER}
+    and
+     studentid = #{studentId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateAllArchive" parameterType="java.lang.Integer" >
+    update coursestudent
+    set archive = 1
+    where courseid = #{courseId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CourseStudent">
     update coursestudent
     set courseid = #{courseid,jdbcType=INTEGER},

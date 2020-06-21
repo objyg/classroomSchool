@@ -91,14 +91,14 @@ public class ShiroConfig {
 
 //
 ////        注意：当授权拦截后，shiro会自动跳转到未授权页面
-        filterChainDefinitionMap.put("/CourseController/*","authc");
-        filterChainDefinitionMap.put("/CourseStudentController/*","authc");
-        filterChainDefinitionMap.put("/CourseTeacherController/*","authc");
-        filterChainDefinitionMap.put("/StudentController/*","authc");
-        filterChainDefinitionMap.put("/TeacherController/*","authc");
-        filterChainDefinitionMap.put("/WorkController/*","authc");
-        filterChainDefinitionMap.put("/WorkStudentController/*","authc");
-        filterChainDefinitionMap.put("/FileController/*","authc");
+//        filterChainDefinitionMap.put("/CourseController/*","authc");
+//        filterChainDefinitionMap.put("/CourseStudentController/*","authc");
+//        filterChainDefinitionMap.put("/CourseTeacherController/*","authc");
+//        filterChainDefinitionMap.put("/StudentController/*","authc");
+//        filterChainDefinitionMap.put("/TeacherController/*","authc");
+//        filterChainDefinitionMap.put("/WorkController/*","authc");
+//        filterChainDefinitionMap.put("/WorkStudentController/*","authc");
+//        filterChainDefinitionMap.put("/FileController/*","authc");
 
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

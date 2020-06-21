@@ -20,6 +20,10 @@ public interface CourseService {
      //        显示指定教师所有加入的课程
      List<Course> selectCourseByTeacher(int teacherId);
 
+     //    归档全部
+     void updateAllArchive(int courseId);
 
+     //    选该课程人数+1
+     void insertCourseNumber(int courseId);
 }
 

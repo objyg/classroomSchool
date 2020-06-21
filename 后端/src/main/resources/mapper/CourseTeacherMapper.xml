@@ -6,6 +6,7 @@
     <result column="courseid" jdbcType="INTEGER" property="courseid" />
     <result column="teacherid" jdbcType="INTEGER" property="teacherid" />
     <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="archive" jdbcType="INTEGER" property="archive" />
   </resultMap>
   <sql id="Base_Column_List">
     id, courseid, teacherid, role
@@ -77,6 +78,21 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateOneArchive" parameterType="java.lang.Integer" >
+    update courseteacher
+    set archive = 1
+    where course_id = #{courseId,jdbcType=INTEGER}
+    and
+      teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateAllArchive" parameterType="java.lang.Integer" >
+    update courseteacher
+    set archive = 1
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CourseTeacher">
     update courseteacher
     set courseid = #{courseid,jdbcType=INTEGER},

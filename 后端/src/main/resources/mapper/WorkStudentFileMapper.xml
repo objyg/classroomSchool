@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.WorkStudentFileMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.WorkStudentFile">
+    <id column="work_student_file_id" jdbcType="INTEGER" property="workStudentFileId" />
+    <result column="work_id" jdbcType="INTEGER" property="workId" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    work_student_file_id, work_id, student_id, file_name
+  </sql>
+  <select id="selectAllWorkStudentFile" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from work_student_file
+  </select>
+  <select id="selectWorkStudentFileByCS" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from work_student_file
+    where work_id = #{workId,jdbcType=INTEGER}
+    and
+    student_id = #{studentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from work_student_file
+    where work_student_file_id = #{workStudentFileId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertWorkFile" >
+    insert into work_student_file ( work_id, student_id,
+      file_name)
+    values ( #{workId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
+      #{fileName,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="com.example.demo.entity.WorkStudentFile">
+    insert into work_student_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workStudentFileId != null">
+        work_student_file_id,
+      </if>
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workStudentFileId != null">
+        #{workStudentFileId,jdbcType=INTEGER},
+      </if>
+      <if test="workId != null">
+        #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.WorkStudentFile">
+    update work_student_file
+    <set>
+      <if test="workId != null">
+        work_id = #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where work_student_file_id = #{workStudentFileId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.WorkStudentFile">
+    update work_student_file
+    set work_id = #{workId,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=INTEGER},
+      file_name = #{fileName,jdbcType=VARCHAR}
+    where work_student_file_id = #{workStudentFileId,jdbcType=INTEGER}
+  </update>
+</mapper>

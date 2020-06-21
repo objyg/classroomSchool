@@ -4,6 +4,8 @@ package com.example.demo.controller;
 import com.example.demo.entity.Course;
 import com.example.demo.entity.Teacher;
 import com.example.demo.service.CourseService;
+import com.example.demo.service.CourseStudentService;
+import com.example.demo.service.CourseTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,10 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
+    @Autowired
+    CourseStudentService courseStudentService;
+    @Autowired
+    CourseTeacherService courseTeacherService;
 
     //    查询全课程信息
     @GetMapping("/getAllCourse")
@@ -48,5 +54,16 @@ public class CourseController {
     public List<Course> selectCourseByTeacher(@RequestBody int teacherId){
         return courseService.selectCourseByTeacher(teacherId);
     }
+
+//    教师归档课程全部（学生加老师）
+@PostMapping("/updateAllArchive")
+public void updateAllArchive(@RequestBody int courseId){
+//        课程归档
+    courseService.updateAllArchive(courseId);
+//    课程教师归档
+    courseTeacherService.updateAllArchive(courseId);
+//    课程学生归档
+    courseStudentService.updateAllArchive(courseId);
+}
 
 }

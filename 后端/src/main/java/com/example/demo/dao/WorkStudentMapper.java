@@ -17,5 +17,8 @@ public interface WorkStudentMapper {
     void insertWorkStudent(WorkStudent workStudent);
 
 //    教师批改作业
-    void teacherCheckWork(int workId,int studentId);
+    void teacherCheckWork(int workId,int studentId,int score);
+
+//    教师发布作业，学生作业加一条
+    void issueWork(int workId,int studentId);
 }

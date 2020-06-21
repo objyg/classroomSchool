@@ -15,6 +15,16 @@ public class WorkStudent {
 
     private String message;
 
+    private int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public Integer getWorkid() {
         return workid;
     }
@@ -62,4 +72,16 @@ public class WorkStudent {
     public void setMessage(String message) {
         this.message = message == null ? null : message.trim();
     }
+
+    public WorkStudent(Integer workid, Integer studentid, String status, Date submittime, String text, String message, int score) {
+        this.workid = workid;
+        this.studentid = studentid;
+        this.status = status;
+        this.submittime = submittime;
+        this.text = text;
+        this.message = message;
+        this.score = score;
+    }
+
+    public WorkStudent(){}
 }

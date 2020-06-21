@@ -17,10 +17,20 @@ public class Course {
 
     private Integer serialnumber;
 
+    private String semester;
+
 
     private String title;
 
     private String name;
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
     public String getTitle() {
         return title;

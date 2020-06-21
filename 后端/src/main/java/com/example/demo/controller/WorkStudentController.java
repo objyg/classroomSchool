@@ -31,7 +31,7 @@ public class WorkStudentController {
 //    学生提交作业
     @PostMapping("/insertWorkStudent")
     public void insertWorkStudent(@RequestBody WorkStudent workStudent){
-        insertWorkStudent(workStudent);
+        workStudentService.insertWorkStudent(workStudent);
 //        该作业提交人数变化
         workService.studentSubmitWork(workStudent.getWorkid());
     }
@@ -39,7 +39,8 @@ public class WorkStudentController {
 //    教师批改作业
     @PostMapping("/teacherCheckWork")
     public void teacherCheckWork(@RequestBody int[] condition){
-        workStudentService.teacherCheckWork(condition[0],condition[1]);
+        workStudentService.teacherCheckWork(condition[0],condition[1],condition[2]);
+        workService.teacherCheckWork(condition[0]);
     }
 
 }

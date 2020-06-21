@@ -41,4 +41,10 @@ public class CourseTeacherController {
     public void deleteCourseTeacher(@RequestBody int id){
         courseTeacherService.deleteCourseTeacher(id);
     }
+
+    //    教师归档自己的课程
+    @PostMapping("/updateOneArchive")
+    public void updateOneArchive(@RequestBody int[] condition){
+        courseTeacherService.updateOneArchive(condition[0],condition[1]);
+    }
 }

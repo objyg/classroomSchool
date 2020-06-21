@@ -122,4 +122,21 @@ public class Work {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    public Work(Integer workid, Integer courseid, String type, Date releasedate, Date deadline, String title, String content ,Integer revised, Integer unreviewed, Integer submittednum, Integer unpaidnum, Integer marks) {
+        this.workid = workid;
+        this.courseid = courseid;
+        this.type = type;
+        this.releasedate = releasedate;
+        this.deadline = deadline;
+        this.title = title;
+        this.revised = revised;
+        this.unreviewed = unreviewed;
+        this.submittednum = submittednum;
+        this.unpaidnum = unpaidnum;
+        this.marks = marks;
+        this.content = content;
+    }
+
+    public Work(){}
 }
