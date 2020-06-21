@@ -24,7 +24,9 @@
   </select>
   <delete id="deleteCourseTeacher" parameterType="java.lang.Integer">
     delete from courseteacher
-    where id = #{id,jdbcType=INTEGER}
+    where course_id = #{courseId,jdbcType=INTEGER}
+    and
+    teacher_id = #{teacherId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.demo.entity.CourseTeacher">
     insert into courseteacher (id, courseid, teacherid, 

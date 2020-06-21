@@ -20,6 +20,7 @@ public interface WorkService {
      //  查找指定课程的作业
      List<Work> selectWorkByCourse(int courseId);
 
+
      //    学生提交作业   上交人数+1    未交人数-1
      void studentSubmitWork(int workId);
 

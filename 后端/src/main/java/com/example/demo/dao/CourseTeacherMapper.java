@@ -15,7 +15,7 @@ public interface CourseTeacherMapper {
     void insertCourseTeacher(CourseTeacher courseTeacher);
 
 //    删除教师加入的课程
-    void deleteCourseTeacher(int id);
+    void deleteCourseTeacher(int courseId,int teacherId);
 
 //    教师归档自己的课程
     void updateOneArchive(int courseId,int teacherId);

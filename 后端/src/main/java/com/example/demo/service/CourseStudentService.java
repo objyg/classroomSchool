@@ -14,7 +14,7 @@ public interface CourseStudentService {
      void insertCourseStudent(CourseStudent courseStudent);
 
      //    删除学生的选课
-     void deleteCourseSrudent(int id);
+     void deleteCourseSrudent(int courseId,int studentId);
 
      //    根据课程号查找学生选课
      List<CourseStudent> selectCourseStudentByCourseId(int courseId);

@@ -30,8 +30,8 @@ public class CourseTeacherServiceImp implements CourseTeacherService {
     }
 
     @Override
-    public void deleteCourseTeacher(int id) {
-        courseTeacherMapper.deleteCourseTeacher(id);
+    public void deleteCourseTeacher(int courseId,int teacherId) {
+        courseTeacherMapper.deleteCourseTeacher(courseId,teacherId);
     }
 
     @Override

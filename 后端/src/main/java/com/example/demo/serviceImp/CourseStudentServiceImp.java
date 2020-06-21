@@ -29,8 +29,8 @@ public class CourseStudentServiceImp implements CourseStudentService {
     }
 
     @Override
-    public void deleteCourseSrudent(int id) {
-        courseStudentMapper.deleteCourseSrudent(id);
+    public void deleteCourseSrudent(int courseId,int studentId) {
+        courseStudentMapper.deleteCourseSrudent(courseId,studentId);
     }
 
     @Override
