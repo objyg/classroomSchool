@@ -12,7 +12,9 @@ import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -60,16 +62,23 @@ public class FileController {
 
 //    学生作业文件上传
 @RequestMapping("/workFileUpload")
-public void workFileUpload(@RequestBody int [] condition,MultipartFile files, HttpSession session) throws IOException {
+public void workFileUpload(HttpServletRequest request) throws IOException {
+
+    MultipartHttpServletRequest params=((MultipartHttpServletRequest) request);
+    List<MultipartFile> files = ((MultipartHttpServletRequest) request)
+            .getFiles("files");
+    MultipartFile file=files.get(0);
+//    System.out.println(file.getOriginalFilename());
+    String workId=params.getParameter("workId");
+    String studentId=params.getParameter("studentId");
     //获取上传文件的路径
     String realPath = "D://唐圳//软件学习//高级java//作业//课程设计//课堂派//后端（git）//classroomSchool//后端//srcmain//java//com//example//demo//file";
-//        System.out.println("--------"+realPath);
     //获取上传的文件名，
-    File file1 = new File(realPath, files.getOriginalFilename());
-    System.out.println(files.getOriginalFilename());
-    workStudentFileService.insertWorkFile(condition[0],condition[1],files.getOriginalFilename());
+    File file1 = new File(realPath, file.getOriginalFilename());
+//    System.out.println(files.getOriginalFilename());
+    workStudentFileService.insertWorkFile(Integer.parseInt(workId),Integer.parseInt(studentId),file.getOriginalFilename());
     //执行文件上传复制
-    files.transferTo(file1);
+    file.transferTo(file1);
 
 }
 
@@ -106,16 +115,22 @@ public void workFileDownload(String fileName, HttpServletResponse response) thro
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/courseFileUpload")
-    public void courseFileUpload(@RequestBody int courseId,MultipartFile files, HttpSession session) throws IOException {
+    public void courseFileUpload(HttpServletRequest request) throws IOException {
+
+        MultipartHttpServletRequest params=((MultipartHttpServletRequest) request);
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request)
+                .getFiles("files");
+        MultipartFile file=files.get(0);
+        String courseId=params.getParameter("courseId");
         //获取上传文件的路径
         String realPath = "D://唐圳//软件学习//高级java//作业//课程设计//课堂派//后端（git）//classroomSchool//后端//srcmain//java//com//example//demo//file";
 //        System.out.println("--------"+realPath);
         //获取上传的文件名，
-        File file1 = new File(realPath, files.getOriginalFilename());
-        System.out.println(files.getOriginalFilename());
-        courseFileService.insertCourseFile(courseId,files.getOriginalFilename());
+        File file1 = new File(realPath, file.getOriginalFilename());
+//        System.out.println(file.getOriginalFilename());
+        courseFileService.insertCourseFile(Integer.parseInt(courseId),file.getOriginalFilename());
         //执行文件上传复制
-        files.transferTo(file1);
+        file.transferTo(file1);
         //跳到下载页面
 
     }
