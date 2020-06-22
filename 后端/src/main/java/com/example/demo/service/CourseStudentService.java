@@ -22,6 +22,9 @@ public interface CourseStudentService {
      //    学生归档自己课程
      void updateOneArchive(int courseId,int studentId);
 
+     //    学生恢复已归档课程
+     void updateArchive(int courseId,int studentId);
+
      //    归档全部
      void updateAllArchive(int courseId);
 }

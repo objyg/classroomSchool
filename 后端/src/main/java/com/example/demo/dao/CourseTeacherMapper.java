@@ -20,6 +20,9 @@ public interface CourseTeacherMapper {
 //    教师归档自己的课程
     void updateOneArchive(int courseId,int teacherId);
 
+//    老师恢复已归档课程
+void updateArchive(int courseId,int teacherId);
+
     //    归档全部
     void updateAllArchive(int courseId);
 

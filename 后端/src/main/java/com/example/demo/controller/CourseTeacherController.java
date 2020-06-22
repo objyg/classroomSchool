@@ -47,4 +47,10 @@ public class CourseTeacherController {
     public void updateOneArchive(@RequestBody int[] condition){
         courseTeacherService.updateOneArchive(condition[0],condition[1]);
     }
+
+//    老师恢复已归档课程
+@PostMapping("/updateArchive")
+public void updateArchive(@RequestBody int[] condition){
+    courseTeacherService.updateArchive(condition[0],condition[1]);
+}
 }

@@ -44,6 +44,11 @@ public class CourseStudentServiceImp implements CourseStudentService {
     }
 
     @Override
+    public void updateArchive(int courseId, int studentId) {
+        courseStudentMapper.updateArchive(courseId,studentId);
+    }
+
+    @Override
     public void updateAllArchive(int courseId) {
         courseStudentMapper.updateAllArchive(courseId);
     }

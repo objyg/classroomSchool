@@ -43,6 +43,17 @@ public class CourseServiceImp implements CourseService {
     }
 
     @Override
+    public List<Course> selectCourseByStudentNo(int studentId) {
+        return courseMapper.selectCourseByStudentNo(studentId);
+    }
+
+    @Override
+    public List<Course> selectCourseByTeacherNo(int teacherId) {
+        return courseMapper.selectCourseByTeacherNo(teacherId);
+    }
+
+
+    @Override
     public void updateAllArchive(int courseId) {
         courseMapper.updateAllArchive(courseId);
     }

@@ -32,13 +32,34 @@
   <select id="selectCourseByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
  SELECT course.* FROM course WHERE course.courseid in (SELECT coursestudent.courseid FROM coursestudent WHERE coursestudent.studentid=
   #{studentId,jdbcType=INTEGER}
+     and
+ coursestudent.Archive = 1
  )
   </select>
   <select id="selectCourseByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
  SELECT course.* FROM course WHERE course.courseid in (SELECT courseteacher.course_id FROM courseteacher WHERE courseteacher.teacher_id=
   #{teacherId,jdbcType=INTEGER}
+   and
+ courseteacher.Archive = 1
  )
   </select>
+
+  <select id="selectCourseByStudentNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+ SELECT course.* FROM course WHERE course.courseid in (SELECT coursestudent.courseid FROM coursestudent WHERE coursestudent.studentid=
+  #{studentId,jdbcType=INTEGER}
+     and
+ coursestudent.Archive = 0
+ )
+  </select>
+  <select id="selectCourseByTeacherNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+ SELECT course.* FROM course WHERE course.courseid in (SELECT courseteacher.course_id FROM courseteacher WHERE courseteacher.teacher_id=
+  #{teacherId,jdbcType=INTEGER}
+   and
+ courseteacher.Archive = 0
+ )
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from course
     where courseid = #{courseid,jdbcType=INTEGER}

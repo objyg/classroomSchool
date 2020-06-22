@@ -95,6 +95,14 @@
     where course_id = #{courseId,jdbcType=INTEGER}
   </update>
 
+  <update id="updateArchive" parameterType="java.lang.Integer" >
+   update courseteacher
+    set archive = 0
+    where course_id = #{courseId,jdbcType=INTEGER}
+    and
+      teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.CourseTeacher">
     update courseteacher
     set courseid = #{courseid,jdbcType=INTEGER},

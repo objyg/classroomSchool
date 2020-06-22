@@ -14,11 +14,17 @@ public interface CourseMapper {
     //    增加课程
     void insertCourse(Course course);
 
-//    显示指定学生的所有加入的课程
+//    显示指定学生的所有加入的课程(归档)
         List<Course> selectCourseByStudent(int studentId);
 
-//        显示指定教师所有加入的课程
+//        显示指定教师所有加入的课程(归档)
     List<Course> selectCourseByTeacher(int teacherId);
+
+    //    显示指定学生的所有加入的课程(未归档)
+    List<Course> selectCourseByStudentNo(int studentId);
+
+    //        显示指定教师所有加入的课程(未归档)
+    List<Course> selectCourseByTeacherNo(int teacherId);
 
 //    归档全部
     void updateAllArchive(int courseId);

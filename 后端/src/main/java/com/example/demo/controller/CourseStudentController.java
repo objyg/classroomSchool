@@ -54,4 +54,9 @@ public class CourseStudentController {
         courseStudentService.updateOneArchive(condition[0],condition[1]);
     }
 
+//   学生恢复已归档课程
+@PostMapping("/updateArchive")
+public void updateArchive(@RequestBody int[] condition){
+    courseStudentService.updateArchive(condition[0],condition[1]);
+}
 }

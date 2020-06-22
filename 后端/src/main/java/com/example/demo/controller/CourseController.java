@@ -43,16 +43,28 @@ public class CourseController {
         courseService.insertCourse(courseA);
     }
 
-//    显示指定学生的全部课程信息
+//    显示指定学生的全部课程信息(归档)
     @PostMapping("/selectCourseByStudent")
     public List<Course> selectCourseByStudent(@RequestBody int studentId){
         return courseService.selectCourseByStudent(studentId);
     }
 
-    //    显示指定教师的全部课程信息
+    //    显示指定教师的全部课程信息（归档）
     @PostMapping("/selectCourseByTeacher")
     public List<Course> selectCourseByTeacher(@RequestBody int teacherId){
         return courseService.selectCourseByTeacher(teacherId);
+    }
+
+    //    显示指定学生的全部课程信息(未归档)
+    @PostMapping("/selectCourseByStudentNo")
+    public List<Course> selectCourseByStudentNo(@RequestBody int studentId){
+        return courseService.selectCourseByStudentNo(studentId);
+    }
+
+    //    显示指定教师的全部课程信息（未归档）
+    @PostMapping("/selectCourseByTeacherNo")
+    public List<Course> selectCourseByTeacherNo(@RequestBody int teacherId){
+        return courseService.selectCourseByTeacherNo(teacherId);
     }
 
 //    教师归档课程全部（学生加老师）
